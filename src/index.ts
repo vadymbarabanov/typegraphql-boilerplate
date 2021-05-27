@@ -2,6 +2,7 @@ import "reflect-metadata"
 import { ApolloServer } from "apollo-server-express"
 import { buildSchema, Resolver, Query } from "type-graphql"
 import express from "express"
+import { createConnection } from "typeorm"
 
 const PORT = process.env.PORT || 4000
 
@@ -14,6 +15,7 @@ class User {
 }
 
 const main = async () => {
+  await createConnection()
   const schema = await buildSchema({
     resolvers: [User],
   })
