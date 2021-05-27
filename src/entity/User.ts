@@ -1,3 +1,4 @@
+import { Field, ID, ObjectType } from "type-graphql"
 import {
   BaseEntity,
   Column,
@@ -7,17 +8,14 @@ import {
   UpdateDateColumn,
 } from "typeorm"
 
+@ObjectType()
 @Entity()
 export class User extends BaseEntity {
+  @Field(() => ID)
   @PrimaryGeneratedColumn()
   id: number
 
-  @Column()
-  firstName: string
-
-  @Column()
-  lastName: string
-
+  @Field()
   @Column("text", { unique: true })
   email: string
 
